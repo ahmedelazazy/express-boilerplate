@@ -8,6 +8,7 @@ const version = '1.0'
 app.use(requestIp.mw())
 
 app.get('/', (req, res) => {
+	console.log(process.env)
 	const myVar = process.env.MY_VAR
 	res.send(`MY_VAR: ${myVar}`)
 })
