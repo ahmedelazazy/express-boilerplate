@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: [self-hosted, Linux]
+    runs-on: ['test-1-server-18.191.210.54', 'test-2-server-3.145.61.62']
 
     strategy:
       matrix:
