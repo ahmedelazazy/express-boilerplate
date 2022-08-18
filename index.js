@@ -8,7 +8,7 @@ const version = '1.0'
 app.use(requestIp.mw())
 
 app.get('/', (req, res) => {
-	res.send(`${appName} is up and running - v${version}`)
+	res.send(`hello1`)
 })
 
 app.get('/path1', (req, res) => {
