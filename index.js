@@ -8,7 +8,8 @@ const version = '1.0'
 app.use(requestIp.mw())
 
 app.get('/', (req, res) => {
-	res.send(`hello2`)
+	const myVar = process.env.MY_VAR
+	res.send(`${MY_VAR}: ${myVar}`)
 })
 
 app.get('/path1', (req, res) => {
