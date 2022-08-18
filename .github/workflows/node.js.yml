@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ['server-1']
+    runs-on: ['server-1', 'server-2']
 
     strategy:
       matrix:
