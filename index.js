@@ -10,7 +10,7 @@ app.use(requestIp.mw())
 app.get('/', (req, res) => {
 	console.log(process.env)
 	const myVar = process.env.MY_VAR
-	res.send(`MY_VAR: ${myVar}`)
+	res.send(`v6`)
 })
 
 app.get('/path1', (req, res) => {
