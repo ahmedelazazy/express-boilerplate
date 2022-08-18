@@ -8,7 +8,7 @@ const version = '1.0'
 app.use(requestIp.mw())
 
 app.get('/', (req, res) => {
-	res.send(`hello1`)
+	res.send(`hello2`)
 })
 
 app.get('/path1', (req, res) => {
