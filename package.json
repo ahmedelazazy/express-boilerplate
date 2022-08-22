@@ -1,24 +1,15 @@
 {
 	"name": "express-boilerplate",
 	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
 	"scripts": {
+		"dev": "nodemon index.js",
 		"start": "node index.js",
-		"ci": "pm2 restart app"
+		"ci": "pm2 restart app",
+		"setup-ci": "pm2 start --name 'app' --log-date-format 'YYYY-MM-DD HH:mm' npm -- run start"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ahmedelazazy/express-boilerplate.git"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/ahmedelazazy/express-boilerplate/issues"
-	},
-	"homepage": "https://github.com/ahmedelazazy/express-boilerplate#readme",
 	"dependencies": {
+		"@maxmind/geoip2-node": "^3.4.0",
+		"cross-fetch": "^3.1.5",
 		"express": "^4.18.1",
 		"request-ip": "^3.3.0"
 	}
