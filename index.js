@@ -1,32 +1,51 @@
+require('dotenv-flow').config()
+
 const express = require('express')
+const Redis = require('redis')
+
 const app = express()
 const port = process.env.PORT || 3000
-const requestIp = require('request-ip')
 
-const { get, test } = require('./geo')
-
-const appName = process.env.APP_NAME || '_App_Name_'
-const version = '1.0'
-app.use(requestIp.mw())
+console.log(`ENV: ${process.env.NODE_ENV}`)
 
 app.get('/', (req, res) => {
-	console.log(process.env)
-	const myVar = process.env.MY_VAR
-	res.send(`v25`)
+	res.send(`ok`)
 })
 
-app.get('/path1', (req, res) => {
-	res.send(`/path1 - ${appName}`)
+//key=a&value=b
+app.get('/set', async (req, res) => {
+	try {
+		const reditClient = Redis.createClient({ url: process.env.REDIS_URL })
+		reditClient.connect()
+
+		const { key, value } = req.query
+
+		const redisResponse = await reditClient.set(key, value)
+
+		res.json(redisResponse)
+	} catch (err) {
+		console.error(err)
+		res.send(err.message)
+	}
 })
 
-app.get('/ip', (req, res) => {
-	const ip = req.clientIp || 'Not detected'
-	res.send(ip)
-})
+app.get('/get', async (req, res) => {
+	try {
+		const { key } = req.query
 
-app.get('/geo', get)
+		const reditClient = Redis.createClient({ url: process.env.REDIS_URL })
+		reditClient.connect()
+
+		const redisResponse = await reditClient.get(key)
+
+		res.json(redisResponse)
+	} catch (err) {
+		console.error(err)
+		res.send(err.message)
+	}
+})
 
 app.listen(port, () => {
-	console.log(`${appName} is up on port ${port}`)
+	console.log(`App is up on port ${port}`)
 })
 
